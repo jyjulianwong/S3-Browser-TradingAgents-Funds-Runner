@@ -13,6 +13,7 @@ const envVars = {
   BUCKET_NAME: undefined,
   EXCLUDE_PATTERN: "^index\\.html$",
   FARO_ENDPOINT_URL: null,
+  ROUTER_BASENAME: null,
 };
 
 // Load variables from .env file into environment.

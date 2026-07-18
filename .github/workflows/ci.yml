@@ -7,6 +7,10 @@ on:
 permissions:
   contents: read
   id-token: write
+  pages: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
 jobs:
   test:
     name: Run tests
@@ -49,10 +53,13 @@ jobs:
         run: npm ci --include=dev
       - name: Build with webpack
         run: npm run build
-  demo:
-    name: Deploy demo
+  deploy:
+    name: Deploy to GitHub Pages
     needs: [test, build]
     if: github.ref_name == 'main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.3.1
@@ -64,19 +71,21 @@ jobs:
       - name: Update to latest npm
         run: npm install -g npm@latest
       - name: Install dependencies
-        run: npm ci
-        working-directory: demo
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4.3.1
+        run: npm ci --include=dev
+      - name: Build with webpack
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+          ROUTER_BASENAME: /S3-Browser-TradingAgents-Funds-Runner
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: eu-central-1
-      - name: Create or update stack resources
-        uses: pulumi/actions@v6.6.1
-        with:
-          pulumi-version: "latest"
-          command: up
-          diff: true
-          suppress-progress: true
-          stack-name: prod
-          work-dir: demo
+          path: dist/
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

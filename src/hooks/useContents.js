@@ -37,7 +37,7 @@ const listContents = async (prefix) => {
           lastModified: LastModified,
           size: Size,
           path: Key,
-          url: `http://${process.env.BUCKET_NAME}/${Key}`,
+          url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${Key}`,
         })
       ) || [],
   };

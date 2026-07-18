@@ -15,7 +15,7 @@ export default function App() {
   return (
     <ChakraProvider value={defaultSystem}>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.ROUTER_BASENAME || ""}>
           <Routes>
             <Route index element={<Explorer />} />
             <Route path="*" element={<Navigate to="/" />} />
