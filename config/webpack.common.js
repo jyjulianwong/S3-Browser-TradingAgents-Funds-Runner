@@ -3,6 +3,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const { DefinePlugin, EnvironmentPlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 // Supported environment variables with default values
 // (see https://webpack.js.org/plugins/environment-plugin/#usage-with-default-values).
@@ -56,6 +57,15 @@ module.exports = {
       template: path.resolve(__dirname, "../src/index.html"),
       favicon: path.resolve(__dirname, "../src/favicon.svg"),
       inject: "body",
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, "../src/favicon.ico") },
+        { from: path.resolve(__dirname, "../src/apple-touch-icon.png") },
+        { from: path.resolve(__dirname, "../src/android-chrome-192x192.png") },
+        { from: path.resolve(__dirname, "../src/android-chrome-512x512.png") },
+        { from: path.resolve(__dirname, "../src/site.webmanifest") },
+      ],
     }),
   ],
   output: {
