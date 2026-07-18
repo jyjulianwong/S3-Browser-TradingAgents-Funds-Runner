@@ -12,12 +12,12 @@ This fork is configured to deploy automatically to GitHub Pages on every push to
 In your repository go to **Settings → Secrets and variables → Actions** and add
 the following secrets:
 
-| Secret | Value |
-|---|---|
-| `AWS_REGION` | `eu-west-2` |
-| `AWS_ACCESS_KEY_ID` | Access key for an IAM user with `s3:ListBucket` on the bucket |
-| `AWS_SECRET_ACCESS_KEY` | Corresponding secret key |
-| `BUCKET_NAME` | `004246189700-jyjulianwong-tafr-reports` |
+| Secret                  | Value                                                         |
+| ----------------------- | ------------------------------------------------------------- |
+| `AWS_REGION`            | `eu-west-2`                                                   |
+| `AWS_ACCESS_KEY_ID`     | Access key for an IAM user with `s3:ListBucket` on the bucket |
+| `AWS_SECRET_ACCESS_KEY` | Corresponding secret key                                      |
+| `BUCKET_NAME`           | `004246189700-jyjulianwong-tafr-reports`                      |
 
 ### 2. Enable GitHub Pages
 
