@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { Link as ReactRouterLink, useSearchParams } from "react-router-dom";
 import {
@@ -42,47 +42,58 @@ function Navigation({ prefix }) {
       isCurrent: index === items.length - 1,
     }));
 
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.scrollLeft = el.scrollWidth;
+    }
+  }, [prefix]);
+
   return (
-    <Breadcrumb.Root
-      size="lg"
+    <Box
+      ref={scrollRef}
+      overflowX="auto"
       borderWidth="1px"
       shadow="md"
-      p={2}
       background="gray.100"
     >
-      <Breadcrumb.List>
-        <Breadcrumb.Item key="root">
-          {folders.length === 0 ? (
-            <Breadcrumb.CurrentLink fontWeight="bold">
-              <Icon as={GrHome} mr={2} verticalAlign="text-top" />
-              {process.env.BUCKET_NAME}
-            </Breadcrumb.CurrentLink>
-          ) : (
-            <Breadcrumb.Link asChild aria-label="bucket root">
-              <ReactRouterLink to="">
-                <Icon as={GrHome} verticalAlign="text-top" />
-              </ReactRouterLink>
-            </Breadcrumb.Link>
-          )}
-        </Breadcrumb.Item>
-        {folders.map((item) => (
-          <Fragment key={item.url}>
-            <Breadcrumb.Separator />
-            <Breadcrumb.Item>
-              {item.isCurrent ? (
-                <Breadcrumb.CurrentLink fontWeight="bold">
-                  {item.name}
-                </Breadcrumb.CurrentLink>
-              ) : (
-                <Breadcrumb.Link asChild>
-                  <ReactRouterLink to={item.url}>{item.name}</ReactRouterLink>
-                </Breadcrumb.Link>
-              )}
-            </Breadcrumb.Item>
-          </Fragment>
-        ))}
-      </Breadcrumb.List>
-    </Breadcrumb.Root>
+      <Breadcrumb.Root size="lg" p={2} width="fit-content" minW="full">
+        <Breadcrumb.List flexWrap="nowrap" whiteSpace="nowrap">
+          <Breadcrumb.Item key="root" flexShrink={0}>
+            {folders.length === 0 ? (
+              <Breadcrumb.CurrentLink fontWeight="bold">
+                <Icon as={GrHome} mr={2} verticalAlign="text-top" />
+                {process.env.BUCKET_NAME}
+              </Breadcrumb.CurrentLink>
+            ) : (
+              <Breadcrumb.Link asChild aria-label="bucket root">
+                <ReactRouterLink to="">
+                  <Icon as={GrHome} verticalAlign="text-top" />
+                </ReactRouterLink>
+              </Breadcrumb.Link>
+            )}
+          </Breadcrumb.Item>
+          {folders.map((item) => (
+            <Fragment key={item.url}>
+              <Breadcrumb.Separator flexShrink={0} />
+              <Breadcrumb.Item flexShrink={0}>
+                {item.isCurrent ? (
+                  <Breadcrumb.CurrentLink fontWeight="bold">
+                    {item.name}
+                  </Breadcrumb.CurrentLink>
+                ) : (
+                  <Breadcrumb.Link asChild>
+                    <ReactRouterLink to={item.url}>{item.name}</ReactRouterLink>
+                  </Breadcrumb.Link>
+                )}
+              </Breadcrumb.Item>
+            </Fragment>
+          ))}
+        </Breadcrumb.List>
+      </Breadcrumb.Root>
+    </Box>
   );
 }
 
