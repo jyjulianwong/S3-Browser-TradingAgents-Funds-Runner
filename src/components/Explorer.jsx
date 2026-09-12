@@ -64,7 +64,7 @@ function Navigation({ prefix }) {
           <Breadcrumb.Item key="root" flexShrink={0}>
             {folders.length === 0 ? (
               <Breadcrumb.CurrentLink fontWeight="bold">
-                <Icon as={GrHome} mr={2} verticalAlign="text-top" />
+                <Icon as={GrHome} mr={2} verticalAlign="middle" />
                 {process.env.BUCKET_NAME}
               </Breadcrumb.CurrentLink>
             ) : (
