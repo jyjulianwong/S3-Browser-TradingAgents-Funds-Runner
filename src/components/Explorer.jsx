@@ -64,13 +64,22 @@ function Navigation({ prefix }) {
           <Breadcrumb.Item key="root" flexShrink={0}>
             {folders.length === 0 ? (
               <Breadcrumb.CurrentLink fontWeight="bold">
-                <Icon as={GrHome} mr={2} verticalAlign="middle" />
-                {process.env.BUCKET_NAME}
+                <Box
+                  as="span"
+                  display="inline-flex"
+                  alignItems="center"
+                  gap={2}
+                >
+                  <Icon as={GrHome} />
+                  {process.env.BUCKET_NAME}
+                </Box>
               </Breadcrumb.CurrentLink>
             ) : (
               <Breadcrumb.Link asChild aria-label="bucket root">
                 <ReactRouterLink to="">
-                  <Icon as={GrHome} verticalAlign="text-top" />
+                  <Box as="span" display="inline-flex" alignItems="center">
+                    <Icon as={GrHome} />
+                  </Box>
                 </ReactRouterLink>
               </Breadcrumb.Link>
             )}
