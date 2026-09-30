@@ -150,7 +150,7 @@ function Listing({ prefix }) {
                     {data?.folders.map((item) => (
                       <Table.Row key={item.path}>
                         <Table.Cell>
-                          <Icon as={GrFolder} mr={1} verticalAlign="text-top" />
+                          <Icon as={GrFolder} mr={1} verticalAlign="middle" />
                           <Link asChild>
                             <ReactRouterLink to={item.url}>
                               {item.name}
@@ -164,11 +164,7 @@ function Listing({ prefix }) {
                     {data?.objects.map((item) => (
                       <Table.Row key={item.path}>
                         <Table.Cell>
-                          <Icon
-                            as={GrDocument}
-                            mr={1}
-                            verticalAlign="text-top"
-                          />
+                          <Icon as={GrDocument} mr={1} verticalAlign="middle" />
                           <Link
                             href={item.url}
                             target="_blank"
