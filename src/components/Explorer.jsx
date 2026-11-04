@@ -13,6 +13,7 @@ import {
 import { GrHome, GrFolder, GrDocument } from "react-icons/gr";
 import { useContents } from "../hooks/useContents";
 import { sanitizePrefix, formatFileSize } from "../helpers";
+import DownloadZipButton from "../fork/DownloadZipButton"; // FORK
 
 export default function Explorer() {
   const [searchParams] = useSearchParams();
@@ -26,6 +27,8 @@ export default function Explorer() {
     <Box maxW="4xl" m={3} mt={1}>
       <VStack alignItems="left">
         <Navigation prefix={prefix} />
+        {/* FORK */}
+        <DownloadZipButton prefix={prefix} />
         <Listing prefix={prefix} />
       </VStack>
     </Box>
