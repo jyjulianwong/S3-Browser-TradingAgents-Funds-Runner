@@ -35,7 +35,9 @@ the following CORS rule to the bucket (S3 console → bucket →
   {
     "AllowedHeaders": ["*"],
     "AllowedMethods": ["GET"],
-    "AllowedOrigins": ["https://jyjulianwong.github.io"],
+    "AllowedOrigins": [
+      "https://s3-browser-tradingagents-funds-runner.jyjwong.com"
+    ],
     "ExposeHeaders": []
   }
 ]
