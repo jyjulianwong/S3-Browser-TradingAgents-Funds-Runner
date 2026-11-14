@@ -65,6 +65,7 @@ module.exports = {
         { from: path.resolve(__dirname, "../src/android-chrome-192x192.png") },
         { from: path.resolve(__dirname, "../src/android-chrome-512x512.png") },
         { from: path.resolve(__dirname, "../src/site.webmanifest") },
+        { from: path.resolve(__dirname, "../src/CNAME") },
       ],
     }),
   ],
