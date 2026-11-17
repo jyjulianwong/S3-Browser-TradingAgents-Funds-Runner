@@ -9,8 +9,6 @@ const CopyPlugin = require("copy-webpack-plugin");
 // (see https://webpack.js.org/plugins/environment-plugin/#usage-with-default-values).
 const envVars = {
   AWS_REGION: undefined,
-  AWS_ACCESS_KEY_ID: undefined,
-  AWS_SECRET_ACCESS_KEY: undefined,
   BUCKET_NAME: undefined,
   EXCLUDE_PATTERN: "^index\\.html$",
   FARO_ENDPOINT_URL: null,
