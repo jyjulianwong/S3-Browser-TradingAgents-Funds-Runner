@@ -4,10 +4,10 @@ import { Zip, ZipDeflate } from "fflate";
 
 const s3Client = new S3Client({
   region: process.env.AWS_REGION,
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  },
+  // Anonymous (unsigned) requests: the bucket is public, so no credentials
+  // are needed and none must ever be embedded in the client bundle.
+  signer: { sign: async (request) => request },
+  credentials: async () => ({ accessKeyId: "", secretAccessKey: "" }),
 });
 
 const excludeRegex = new RegExp(process.env.EXCLUDE_PATTERN || /(?!)/);
