@@ -28,7 +28,7 @@ jobs:
     needs: scan-vulnerabilities
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.3.1
+      - uses: actions/checkout@v4.4.0
       - name: Set up Node
         uses: actions/setup-node@v4.4.0
         with:
@@ -50,7 +50,7 @@ jobs:
       AWS_REGION: eu-central-1
       BUCKET_NAME: www.example.com
     steps:
-      - uses: actions/checkout@v4.3.1
+      - uses: actions/checkout@v4.4.0
       - name: Set up Node
         uses: actions/setup-node@v4.4.0
         with:
@@ -69,7 +69,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.3.1
+      - uses: actions/checkout@v4.4.0
       - name: Set up Node
         uses: actions/setup-node@v4.4.0
         with:
