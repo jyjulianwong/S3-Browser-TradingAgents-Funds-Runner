@@ -15,7 +15,7 @@ the following secrets:
 | Secret        | Value                                    |
 | ------------- | ---------------------------------------- |
 | `AWS_REGION`  | `eu-west-2`                              |
-| `BUCKET_NAME` | `004246189700-jyjulianwong-tafr-reports` |
+| `BUCKET_NAME` | `997614126651-jyjulianwong-tafr-reports` |
 
 ### 2. Enable GitHub Pages
 
